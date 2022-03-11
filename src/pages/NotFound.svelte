@@ -6,11 +6,11 @@
                 <img
                  src="/assets/images/kostiantyn-li-Fi_nhg5itCw-unsplash.jpg"
                  alt=""
-                 width="450"
-                 height="450" />
+                 width="350"
+                 height="350" />
                 <h2 class="xs-title">Oops!</h2>
-                <p>There is something wrong with the page. I cannot find it.</p>
-                <a href="/" class="btn btn-primary mt-4">Back to the home page</a>
+                <p>There is something wrong the page. I cannot find it</p>
+                <a href="/" class="btn btn-primary mt-4">BACK TO THE HOME PAGE</a>
             </div>
             <!-- .xs-heading-title END -->
         </div>
