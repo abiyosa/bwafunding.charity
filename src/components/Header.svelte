@@ -3,10 +3,11 @@
     <div class="container">
         <nav class="xs-menus">
             <div class="nav-header">
-                <div class="nav-toggle"></div>
-                <a href="/" class="nav-logo">
-                    <img src="/assets/images/logo.png" alt="">
-                </a>
+                <div class="nav-toggle">
+                    <a href="/" class="nav-logo">
+                        <img src="/assets/images/logo.png" alt="">
+                    </a>
+                </div>
             </div><!-- .nav-header END -->
             <div class="nav-menus-wrapper row">
                 <div class="xs-logo-wraper col-lg-2 xs-padding-0">
