@@ -32,7 +32,7 @@
 			</div><!-- .xs-heading-title END -->
 		</div><!-- .row end -->
 		<div class="row">
-		{#each charities as charity}
+		{#each $charities as charity}
 			<div class="col-lg-4 col-md-6">
 
 				
@@ -148,6 +148,8 @@
 					</div><!-- .xs-popular-item END -->
 				</div>
 			</div>
+			{:else}
+			<Loader />
 			{/each}
 		</div>
 		<!-- .row end -->
@@ -177,8 +179,10 @@
 <!-- bagian javascript -->
 <script type="text/javascript">
 import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
+    import { charities } from '../stores/data.js';
 	import Modal from './Modal.svelte';
-	export let charities;
+	import Loader from './Loader.svelte';
+
     let isModalOpen = false;
 
 	function calculateFounded(pledged, target) {

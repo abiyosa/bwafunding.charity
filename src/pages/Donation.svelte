@@ -1,19 +1,18 @@
 <script>
+	import { charity, getCharity } from '../stores/data.js';
+	import { params } from '../stores/pages.js';
 	import router from 'page';
+	
     import Header from '../components/Header.svelte';
     import Footer from '../components/Footer.svelte';
 	import Loader from '../components/Loader.svelte';
    
 
-    export let params;
-    let charity, amount, name, email, agree = false;
-	let data = getCharity(params.id);
+    let amount, name, email, agree = false;
 
-    async function getCharity(id) {
-        const res = await fetch(`https://charity-api-bwa.herokuapp.com/charities/${id}`)
-		return res.json();
 
-    }
+	getCharity($params.id);
+
 
 	function handleButtonClick() {
 		console.log("Button click");
@@ -22,7 +21,7 @@
 	async function handleForm(event) {
 		charity.pledged = charity.pledged + parseInt(amount);
 		try {
-			const res = await fetch(`https://charity-api-bwa.herokuapp.com/charities/${params.id}`,{
+			const res = await fetch(`https://charity-api-bwa.herokuapp.com/charities/${$params.id}`,{
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json'
@@ -61,16 +60,16 @@
 <Header />
 <!-- welcome section -->
 <!--breadcumb start here-->
-{#await data}
+{#if !$charity}
   <Loader />
-{:then charity}
+{:else}
 	<section class="xs-banner-inner-section parallax-window" style=
 	"background-image:url('/assets/images/backgrounds/katt-yukawa-K0E6E0a0R3A-unsplash.jpg')">
 	<div class="xs-black-overlay"></div>
 	<div class="container">
 	<div class="color-white xs-inner-banner-content">
 	<h2>Donate Now</h2>
-	<p>{charity.title}</p>
+	<p>{$charity.title}</p>
 	<ul class="xs-breadcumb">
 	<li class="badge badge-pill badge-primary">
 	<a href="/" class="color-white">Home /</a> Donate
@@ -87,13 +86,13 @@
 	<div class="col-lg-6">
 	<div class="xs-donation-form-images"><img 
     src=
-	"{charity.thumbnail}" class="img-responsive" alt=
+	"{$charity.thumbnail}" class="img-responsive" alt=
 	"Family Images"></div>
 	</div>
 	<div class="col-lg-6">
 	<div class="xs-donation-form-wraper">
 	<div class="xs-heading xs-mb-30">
-	<h2 class="xs-title">{charity.title}</h2>
+	<h2 class="xs-title">{$charity.title}</h2>
 	<p class="small">
         To learn more about make donate charity
 	with us visit our "
@@ -165,6 +164,6 @@
 	</div><!-- .container end -->
 	</section><!-- End donation form section -->
 	</main>
-    {/await}
+    {/if}
 
     <Footer />
